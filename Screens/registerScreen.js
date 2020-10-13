@@ -38,7 +38,7 @@ export default class RegisterScreen extends React.Component {
     }
     else {
       try {
-        const response = await fetch('http://192.168.18.102:3000/register/', {
+        const response = await fetch('https://meanstacktodo1.herokuapp.com/register/', {
           method: 'post',
           body: JSON.stringify({
             email: this.state.email,

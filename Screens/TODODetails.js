@@ -5,6 +5,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import { Card, CheckBox } from 'react-native-elements';
 import LabelInput from '../mainComponents/detailInput';
 import Maps from '../mainComponents/googleMaps';
+import PushNotification from 'react-native-push-notification';
 export default class TODODetails extends React.Component {
 
     constructor(props) {
@@ -21,7 +22,7 @@ export default class TODODetails extends React.Component {
     }
     getDetailsfromServer = async () => {
       try {
-        const response = await fetch('http://192.168.18.102:3000/list/' + this.props.navigation.getParam('ItemID'));
+        const response = await fetch('https://meanstacktodo1.herokuapp.com/list/' + this.props.navigation.getParam('ItemID'));
         const responseJson = await response.json();
         this.setState({
           isLoading: false,
@@ -41,9 +42,8 @@ export default class TODODetails extends React.Component {
       }
     }
     deleteDatafromServer = async (id) => {
-      // console.log(id)
       try {
-        const response = await fetch('http://192.168.18.102:3000/list/' + id, {
+        const response = await fetch('https://meanstacktodo1.herokuapp.com/list/' + id, {
           method: 'delete'
         })
         const responseJson = await response.json();
@@ -87,7 +87,7 @@ export default class TODODetails extends React.Component {
     }
     sendingUpdatedData = async (item) => {
       try {
-        const response = await fetch('http://192.168.18.102:3000/list/' + item._id, {
+        const response = await fetch('https://meanstacktodo1.herokuapp.com/list/' + item._id, {
           method: 'put',
           body: JSON.stringify({
             _id: item._id,

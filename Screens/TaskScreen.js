@@ -14,8 +14,8 @@ export default class TaskScreen extends React.Component {
     }
   }
   componentDidMount() {
-    console.log('here');
     this.getData();
+    
   }
   getData = async () => {
     try {
@@ -46,7 +46,7 @@ export default class TaskScreen extends React.Component {
     }
     else {
       try {
-        const response = await fetch('http://192.168.18.102:3000/login/', {
+        const response = await fetch('https://meanstacktodo1.herokuapp.com/login/', {
           method: 'post',
           body: JSON.stringify({
             username: this.state.email,

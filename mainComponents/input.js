@@ -7,7 +7,6 @@ const Input = props => {
     const [hidePassword, setHidePassword] = useState(false)
 
     _changeIcon = (iconid,id) => {
-        console.log(iconid,id)
         icon !== "md-eye-off"
             ? (setIcon("md-eye-off"), setHidePassword(false))
             : (setIcon("md-eye"), setHidePassword(true))

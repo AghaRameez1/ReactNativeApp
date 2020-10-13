@@ -27,7 +27,7 @@ export default class GoogleMaps extends React.Component {
   }
   componentDidMount = async () => {
     try {
-      const response = await fetch('http://192.168.18.102:3000/list');
+      const response = await fetch('https://meanstacktodo1.herokuapp.com/list');
       PushNotification.localNotification({ vibrate: true, priority: 'high', title: 'NETWORK available', message: 'The server is connected', playSound: true })
       const responseJson = await response.json();
       this.setState({
@@ -72,6 +72,7 @@ export default class GoogleMaps extends React.Component {
       console.warn(err)
     }
   }
+  
 
   render() {
     return (
@@ -84,13 +85,13 @@ export default class GoogleMaps extends React.Component {
           onRegionChangeComplete={region => this.setState({ region })}
 
         >
-          {this.state.markers.map(marker1 =>
-            <Marker
+          {this.state.markers.map((marker1, index) =>
+             <Marker key={index}
               coordinate={{ latitude: marker1.latitude, longitude: marker1.longitude }}
               title={marker1.name}
               description={marker1.note}
             />
-          )}
+           )}
         </MapView>
       </View>
     );

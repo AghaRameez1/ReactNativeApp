@@ -18,7 +18,7 @@ export default class TODOScreen extends React.Component {
   }
   getDatafromServer = async () => {
     try {
-      const response = await fetch('http://192.168.18.102:3000/list');
+      const response = await fetch('https://meanstacktodo1.herokuapp.com/list');
       const responseJson = await response.json();
       this.setState({
         refreshing: false,
@@ -34,7 +34,7 @@ export default class TODOScreen extends React.Component {
   };
   deleteDatafromServer = async (id) => {
     try {
-      const response = await fetch('http://192.168.18.102:3000/list/' + id, {
+      const response = await fetch('https://meanstacktodo1.herokuapp.com/list/' + id, {
         method: 'delete'
       })
       if (response.status == '200') {
@@ -61,7 +61,7 @@ export default class TODOScreen extends React.Component {
     try {
       let checked = [...this.state.checked];
       checked[index] = !checked[index];
-      const response = await fetch('http://192.168.18.102:3000/list/' + item._id, {
+      const response = await fetch('https://meanstacktodo1.herokuapp.com/list/' + item._id, {
         method: 'put',
         body: JSON.stringify({
           completed: checked[index],
