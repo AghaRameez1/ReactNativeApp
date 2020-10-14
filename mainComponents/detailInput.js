@@ -20,6 +20,7 @@ const LabelInput = props => {
             numberOfLines={props.numberOfLines}
             keyboardType={props.keyboardType} 
             defaultValue={props.name}
+            maxLength={props.maxLength}
             />
         </View>
     )

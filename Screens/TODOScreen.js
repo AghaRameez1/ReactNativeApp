@@ -107,13 +107,19 @@ render() {
       </View>
     )
   }
-
   return (
+    
     <View style={styles.container}>
       <NavigationEvents
         onDidFocus={() => this.getDatafromServer()
         }
       />
+      {this.state.dataSource.length == 0? 
+      <View style={{
+        flex: 1,
+        justifyContent: 'center'
+      }}><Card style={{ elevation: 8 }}>
+        <Text style={{textAlign:'center', fontSize:40, color:'red'}}>No TODO List</Text></Card></View>:
       <FlatList
         data={this.state.dataSource}
         renderItem={({ item, index }) => this.Item(item, index, checked)}
@@ -126,7 +132,7 @@ render() {
             onRefresh={this.onRefresh.bind(this)}
           />
         }
-      />
+      />}
       <View style={{
         flex: 1,
         flexDirection: 'row',

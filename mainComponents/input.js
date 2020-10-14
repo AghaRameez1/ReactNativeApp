@@ -28,7 +28,7 @@ const Input = props => {
         <View style={{
             flexDirection: 'row',
             paddingTop: 10,
-            // marginTop: 10,
+            marginTop: 10,
             marginLeft: 30,
             marginRight: 20,
         }}>
@@ -39,7 +39,7 @@ const Input = props => {
                 borderBottomWidth: 1,
                 borderBottomColor: '#D3D7DA',
                 paddingLeft: 10,
-                elevation: 2
+                elevation: 3
             }}>
                 <Icon
                     name={props.iconname}
@@ -85,6 +85,7 @@ const Input = props => {
                 borderBottomColor: '#D3D7DA',
             }}>
                 {icon3}
+            
             </View>
         </View>
     )

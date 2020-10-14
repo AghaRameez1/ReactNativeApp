@@ -19,6 +19,7 @@ const Chart = props => {
             }}
             width={Dimensions.get("window").width} // from react-native
             height={220}
+            width={330}
             yAxisLabel="$"
             yAxisSuffix="M"
             yAxisInterval={1} // optional, defaults to 1

@@ -2,12 +2,20 @@ import React from 'react';
 import { Text, View, Image, Button } from 'react-native';
 import { PieChart } from 'react-native-svg-charts'
 import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
-import Icon from "react-native-vector-icons/FontAwesome5"
+import Icon from "react-native-vector-icons/FontAwesome"
 import { Card } from 'react-native-elements';
 import Chart from '../mainComponents/linechar';
 export default class ClientScreen4 extends React.Component {
     constructor(props) {
         super(props);
+        this.state={
+            liked:true,
+        }
+    }
+    handleLiked(){
+        this.setState({
+            liked: !this.state.liked
+        });
     }
     render() {
         const data = [
@@ -160,7 +168,7 @@ export default class ClientScreen4 extends React.Component {
                                 <Image source={require('../mainComponents/image/sampleimage.jpeg')} style={{ borderRadius: 100, height: 50, width: 50 }} />
                                 <View style={{ flexDirection: 'row', marginVertical: 10, marginHorizontal: 10 }}>
                                     <Icon
-                                        name='dollar-sign'
+                                        name='dollar'
                                         color='black'
                                         size={25}
                                         style={{ textAlign: 'center', fontWeight: 'bold' }}
@@ -266,7 +274,7 @@ export default class ClientScreen4 extends React.Component {
                                         }}>
                                             <View style={{ flexDirection: 'row' }}>
                                                 <Icon
-                                                    name='arrow-alt-circle-up'
+                                                    name='arrow-circle-up'
                                                     color='white'
                                                     size={20}
                                                 ></Icon>
@@ -285,23 +293,31 @@ export default class ClientScreen4 extends React.Component {
                                         </View>
                                     </View>
                                 </View>
-                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal:30 }}>
-                                    <View style={{ flexDirection: 'row' }}><Icon
-                                        name='heart'
+                                <View style={{ flexDirection: 'row',justifyContent:'space-evenly', marginHorizontal:30 }}>
+                                    <View style={{ flexDirection: 'row', paddingLeft:10 }}>
+                                        {this.state.liked != true?
+                                        <TouchableOpacity style={{flexDirection:'row'}} onPress={()=>this.handleLiked()}><Icon
+                                        name='heart-o'
                                         color='#C3C3CD'></Icon>
-                                        <Text style={{ color: '#C3C3CD', marginVertical:-4.5, marginHorizontal:4 }}>Like</Text>
+                                        <Text style={{ color: '#C3C3CD', marginVertical:-4.5, marginHorizontal:4 }}>Like</Text></TouchableOpacity>
+                                        :
+                                        <TouchableOpacity style={{flexDirection:'row'}} onPress={()=>this.handleLiked()}><Icon
+                                        name='heart'
+                                        color='red'></Icon>
+                                        <Text style={{ color: 'red', marginVertical:-4.5, marginHorizontal:4 }}>Liked</Text></TouchableOpacity>
+    }
                                     </View>
-                                    <View style={{ flexDirection: 'row' }}>
-                                        <Icon
-                                            name='comment-alt'
+                                    <View style={{ flexDirection: 'row', marginLeft:20 }}>
+                                    <TouchableOpacity style={{flexDirection:'row'}}><Icon
+                                            name='comment-o'
                                             color='#C3C3CD'></Icon>
-                                        <Text style={{ color:'#C3C3CD',marginVertical:-4.5, marginHorizontal:4  }}>Comment</Text>
+                                        <Text style={{ color:'#C3C3CD',marginVertical:-4.5, marginHorizontal:4  }}>Comment</Text></TouchableOpacity>
                                     </View>
-                                    <View style={{ flexDirection: 'row' }}>
-                                        <Icon
+                                    <View style={{ flexDirection: 'row', marginLeft:20 }}>
+                                    <TouchableOpacity style={{flexDirection:'row'}}><Icon
                                             name='share-square'
                                             color='#C3C3CD'></Icon>
-                                        <Text style={{ color:'#C3C3CD',marginVertical:-3.5, marginHorizontal:4  }}>Share</Text>
+                                        <Text style={{ color:'#C3C3CD',marginVertical:-3.5, marginHorizontal:4  }}>Share</Text></TouchableOpacity>
                                     </View>
                                 </View>
                             </View>

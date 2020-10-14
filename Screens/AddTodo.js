@@ -4,6 +4,8 @@ import TaskBtn from '../mainComponents/taskBtn';
 import { createAppContainer, NavigationEvents } from 'react-navigation';
 import LabelInput from '../mainComponents/detailInput';
 import PushNotification from 'react-native-push-notification'
+import { Card } from 'react-native-elements';
+import { ScrollView } from 'react-native-gesture-handler';
 export default class AddTodo extends React.Component {
     constructor(props) {
       super(props);
@@ -70,11 +72,12 @@ export default class AddTodo extends React.Component {
     render() {
       return (
         <View style={{ flex: 1, padding: 20, backgroundColor: 'white' }}>
-          {/* <Card> */}
-            <LabelInput onChangeText={this.handleName} height={40} returnKeyType='next' onSubmitEditing={() => this.secondTextInput.focus()} InputRef={ref => (this.firstTextInput = ref)}>Name</LabelInput>
-            <LabelInput onChangeText={this.handleLatitude} keyboardType='numeric' returnKeyType='next' height={40} onSubmitEditing={() => this.thirdTextInput.focus()} InputRef={ref => (this.secondTextInput = ref)}>Latitude</LabelInput>
-            <LabelInput onChangeText={this.handleLongitude} keyboardType='numeric' returnKeyType='next' height={40} onSubmitEditing={() => this.fourthTextInput.focus()} InputRef={ref => (this.thirdTextInput = ref)} >Longitude</LabelInput>
-            <LabelInput onChangeText={this.handleNote} multiline={true} numberOfLines={4} height={60} InputRef={ref => (this.fourthTextInput = ref)}>Note</LabelInput>
+          {/* <ScrollView> */}
+          <Card>
+            <LabelInput maxLength={25} onChangeText={this.handleName} height={40} returnKeyType='next' onSubmitEditing={() => this.secondTextInput.focus()} InputRef={ref => (this.firstTextInput = ref)}>Name</LabelInput>
+            <LabelInput maxLength={9} onChangeText={this.handleLatitude} keyboardType='numeric' returnKeyType='next' height={40} onSubmitEditing={() => this.thirdTextInput.focus()} InputRef={ref => (this.secondTextInput = ref)}>Latitude</LabelInput>
+            <LabelInput maxLength={9} onChangeText={this.handleLongitude} keyboardType='numeric' returnKeyType='next' height={40} onSubmitEditing={() => this.fourthTextInput.focus()} InputRef={ref => (this.thirdTextInput = ref)} >Longitude</LabelInput>
+            <LabelInput maxLength={255} onChangeText={this.handleNote} multiline={true} numberOfLines={4} height={60} InputRef={ref => (this.fourthTextInput = ref)}>Note</LabelInput>
             <View style={{
               flexDirection: 'row', justifyContent: 'center'
             }}>
@@ -86,7 +89,8 @@ export default class AddTodo extends React.Component {
                 <Text>Cancel</Text>
               </TaskBtn>
             </View>
-          {/* </Card> */}
+          </Card>
+          {/* </ScrollView> */}
         </View>
       )
     }
