@@ -17,6 +17,7 @@ import ClientScreen2 from './Screens/ClientScreen2';
 import ClientScreen3 from './Screens/ClientScreen3';
 import ClientScreen4 from './Screens/ClientScreen4';
 import CalculatorScreen from './Screens/CalculatorScreen';
+import BestGameEver from './Screens/GameScreen';
 
 
 export default class App extends React.Component {
@@ -45,7 +46,14 @@ const MainNavigator = createStackNavigator({
       title: 'Calculator',
       headerShown: false
     },
-  }
+  },
+  Game: {
+    screen: BestGameEver,
+    navigationOptions: {
+      title: 'Game',
+      headerShown: false
+    },
+  },
 }, {
   initialRouteName: 'Home',
   header:'none'

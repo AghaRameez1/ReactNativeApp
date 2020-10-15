@@ -10,7 +10,8 @@ export default class CalculatorScreen extends React.Component {
     this.state={
       currentValue: "0",
       operator: null,
-      previousValue: null
+      previousValue: null,
+      historyValue: null
     }
     
   }
@@ -38,6 +39,7 @@ export default class CalculatorScreen extends React.Component {
     if (operator === "/") {
       this.setState({
         currentValue: previous / current,
+        historyValue: `${current} / ${previous}`
       
       });
     }
@@ -45,6 +47,7 @@ export default class CalculatorScreen extends React.Component {
     if (operator === "x") {
       this.setState({
         currentValue: previous * current,
+        historyValue: `${current} x ${previous}`
       
       });
     }
@@ -52,14 +55,14 @@ export default class CalculatorScreen extends React.Component {
     if (operator === "+") {
       this.setState({
         currentValue: previous + current,
-      
+        historyValue: `${current} + ${previous}`
       });
     }
   
     if (operator === "-") {
       this.setState({
         currentValue: previous - current,
-      
+        historyValue: `${current} - ${previous}`
       });
     }
   }
@@ -77,11 +80,13 @@ export default class CalculatorScreen extends React.Component {
       return (
         <View style={{flex:1,backgroundColor:'black'}}>
             <View style={styles.calView}>
+            <TextInput caretHidden={true} keyboardType={null} color={'white'} showSoftInputOnFocus={false}
+            style={styles.calHistory} multiline={true} value={this.state.historyValue}></TextInput>
             <TextInput caretHidden={true} keyboardType={null} color={'white'} showSoftInputOnFocus={false} placeholder='0' placeholderTextColor='white'
-            style={styles.calInput} value={(this.state.currentValue).toString()}></TextInput>
+            style={styles.calInput} multiline={true} value={(this.state.currentValue).toString()}></TextInput>
             </View>
             <View style={{justifyContent:'space-evenly', flexDirection:'row'}}>
-                {this.state.currentValue !='0'? <CalCirculatorButton backgroundColor='#a6a6a6' CalenderButtonsText={'C'} textColor={'black'} onPress={()=>this.setState({currentValue:0})}></CalCirculatorButton>: <CalCirculatorButton backgroundColor='#a6a6a6' CalenderButtonsText={'AC'} textColor={'black'} onPress={()=>this.setState({currentValue:0})}></CalCirculatorButton>}
+                {this.state.currentValue !='0'? <CalCirculatorButton backgroundColor='#a6a6a6' CalenderButtonsText={' C '} textColor={'black'} onPress={()=>this.setState({currentValue:0, historyValue:null})}></CalCirculatorButton>: <CalCirculatorButton backgroundColor='#a6a6a6' CalenderButtonsText={'AC'} textColor={'black'} onPress={()=>this.setState({currentValue:0})}></CalCirculatorButton>}
                 <CalCirculatorButton paddingRight={15} paddingLeft={15} backgroundColor='#a6a6a6' CalenderButtonsText={'+/-'} textColor={'black'} onPress={()=>this.handleposneg()}></CalCirculatorButton>
                 <CalCirculatorButton backgroundColor='#a6a6a6' CalenderButtonsText={' % '} textColor={'black'} onPress={(()=>this.handlePercentage())}></CalCirculatorButton>
                 <CalCirculatorButton backgroundColor='#f09a35' CalenderButtonsText={' / '} textColor={'white'} onPress={(()=>this.handleOperator('/'))}></CalCirculatorButton>
@@ -124,8 +129,16 @@ export default class CalculatorScreen extends React.Component {
         textAlign:'right',
         // borderWidth:2,
         // borderColor:'black',
-        height:250,
+        height:150,
         fontSize:50,
         
-    }
+    },
+    calHistory:{
+      textAlign:'right',
+      // borderWidth:2,
+      // borderColor:'black',
+      height:150,
+      fontSize:25,
+      
+  }
   });

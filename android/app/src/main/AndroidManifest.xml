@@ -26,7 +26,7 @@
         </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-      <meta-data android:name="com.google.android.geo.API_KEY" android:value=""/>
+      <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyABFmZyYCq0HSZzRTF2_8MXVY7YJtnGRQM"/>
     <meta-data  android:name="com.dieam.reactnativepushnotification.notification_color"
                     android:resource="@android:color/white"/>
     </application>
