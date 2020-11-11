@@ -8,25 +8,27 @@ const GameLoop = (entities, { touches, dispatch,events}) =>{
     let head = entities.head;
     let food = entities.food;
     let tail = entities.tail;
+    let score = entities.score;
+    let highscore = entities.highscore
 
-//     if (events.length){
-//         for( let i=0; i<events.length;i++){
-//             if(events[i].type === "move-up" && head.yspeed !==1){
-//                 head.yspeed = -1;
-//                 head.xspeed = 0;
-//             }else if(events[i].type === "move-down" && head.yspeed !== -1){
-//                 head.yspeed = 1;
-//                 head.xspeed = 0;
-//             }else if(events[i].type === "move-left" && head.xspeed !== 1){
-//                 head.xspeed = -1;
-//                 head.yspeed = 0;
-//             }else if(events[i].type === "move-right" && head.xspeed !== -1){
-//                 head.xspeed = 1;
-//                 head.yspeed = 0;
+    if (events.length){
+        for( let i=0; i<events.length;i++){
+            if(events[i].type === "move-up" && head.yspeed !==1){
+                head.yspeed = -1;
+                head.xspeed = 0;
+            }else if(events[i].type === "move-down" && head.yspeed !== -1){
+                head.yspeed = 1;
+                head.xspeed = 0;
+            }else if(events[i].type === "move-left" && head.xspeed !== 1){
+                head.xspeed = -1;
+                head.yspeed = 0;
+            }else if(events[i].type === "move-right" && head.xspeed !== -1){
+                head.xspeed = 1;
+                head.yspeed = 0;
             
-//         }
-//     }
-// }
+        }
+    }
+}
 
     // Want swipe controls? Uncomment these and comment the above block
     touches.filter(t => t.type === "move").forEach(t => {
@@ -63,7 +65,8 @@ const GameLoop = (entities, { touches, dispatch,events}) =>{
             head.position[1] + head.yspeed >= Constant.GRID_SIZE
         ) {
             // snake hits the wall
-            dispatch({ type: "game-over" })
+            dispatch({ type: "game-over",
+        value: score.value })
         } else {
             // snake moves
             let newTail = [[head.position[0], head.position[1]]];
@@ -75,16 +78,20 @@ const GameLoop = (entities, { touches, dispatch,events}) =>{
                 if(head.position[0] === tail.elements[i][0] && head.position[1] === tail.elements[i][1])
                 {
                     dispatch({
-                        type:"game-over"
+                        type:"game-over",
+                        value: score.value
                     });
                 }
             }
 
             if(head.position[0] === food.position[0] && head.position[1] === food.position[1]){
-
                 tail.elements = [[food.position[0], food.position[1]]].concat(tail.elements)
                 food.position[0]= randomBetween(0, Constant.GRID_SIZE -1);
                 food.position[1] = randomBetween(0, Constant.GRID_SIZE -1);
+                score.value = parseInt(score.value + 1 );
+                if (highscore.highvalue < score.value){
+                    highscore.highvalue = parseInt(highscore.highvalue + 1 );
+                }
             }
         }
     }

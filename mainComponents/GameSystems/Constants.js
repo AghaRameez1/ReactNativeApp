@@ -4,4 +4,5 @@ export default Constant = {
     MAX_HEIGHT: Dimensions.get("screen").height,
     GRID_SIZE: 15,
     CELL_SIZE: 20,
+    SCORE: 0
 }
