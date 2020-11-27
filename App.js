@@ -27,19 +27,19 @@ export default class App extends React.Component {
 }
 
 const MainNavigator = createStackNavigator({
-  Task: TaskScreen ,
+  // Task: TaskScreen ,
   Home: HomeScreen,
-  Login: LoginScreen,
-  TODO: TODOScreen,
-  TODODETAILS: TODODetails,
-  AddTODO: AddTodo,
-  GoogleMap: GoogleMaps,
-  Register: RegisterScreen,
-  ReadMessage: ReadMessageScreen,
-  Client: ClientScreen, 
-  Client2: ClientScreen2,
-  Client3: ClientScreen3,
-  Client4: ClientScreen4,
+  // Login: LoginScreen,
+  // TODO: TODOScreen,
+  // TODODETAILS: TODODetails,
+  // AddTODO: AddTodo,
+  // GoogleMap: GoogleMaps,
+  // Register: RegisterScreen,
+  // ReadMessage: ReadMessageScreen,
+  // Client: ClientScreen, 
+  // Client2: ClientScreen2,
+  // Client3: ClientScreen3,
+  // Client4: ClientScreen4,
   Calculator: {
     screen: CalculatorScreen,
     navigationOptions: {
@@ -55,7 +55,7 @@ const MainNavigator = createStackNavigator({
     },
   },
 }, {
-  initialRouteName: 'Game',
+  initialRouteName: 'Home',
   header:'none'
 });
 
