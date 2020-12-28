@@ -6,6 +6,7 @@ import LabelInput from '../mainComponents/detailInput';
 import PushNotification from 'react-native-push-notification'
 import { Card } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
+import firestore from '@react-native-firebase/firestore';
 export default class AddTodo extends React.Component {
     constructor(props) {
       super(props);
@@ -42,32 +43,42 @@ export default class AddTodo extends React.Component {
       });
     }
     addData = async () => {
-      if (this.state.note == '' || this.state.name == '' || this.state.latitude == '' || this.state.longitude == '') {
-        alert('Fields are Empty, Cannot Add List')
-      }
-      else {
+      // if (this.state.note == '' || this.state.name == '' || this.state.latitude == '' || this.state.longitude == '') {
+      //   alert('Fields are Empty, Cannot Add List')
+      // }
+      // else {
         try {
-          const response = await fetch('https://meanstacktodo1.herokuapp.com/list/', {
-            method: 'post',
-            body: JSON.stringify({
-              note: this.state.note,
+          // const response = await fetch('https://meanstacktodo1.herokuapp.com/list/', {
+          //   method: 'post',
+          //   body: JSON.stringify({
+          //     note: this.state.note,
+          //     name: this.state.name,
+          //     latitude: this.state.latitude,
+          //     longitude: this.state.longitude
+          //   }),
+          //   headers: {
+          //     "Content-type": "application/json; charset=UTF-8"
+          //   }
+          // });
+          
+          // if (response.status == '200') {
+          //   PushNotification.localNotification({ color: "blue", vibrate: true, priority: 'high', title: 'Task Added', message: 'Task has been added', playSound: true })
+          //   this.props.navigation.navigate('TODO')
+          // }
+          const documentGet = await firestore().collection('_users_todo_info').add({
+            note: this.state.note,
               name: this.state.name,
-              latitude: this.state.latitude,
-              longitude: this.state.longitude
-            }),
-            headers: {
-              "Content-type": "application/json; charset=UTF-8"
-            }
-          })
-          if (response.status == '200') {
-            PushNotification.localNotification({ color: "blue", vibrate: true, priority: 'high', title: 'Task Added', message: 'Task has been added', playSound: true })
-            this.props.navigation.navigate('TODO')
-          }
+              latitude: parseFloat(this.state.latitude),
+              longitude: parseFloat(this.state.longitude),
+          }).then(() => {
+                PushNotification.localNotification({ color: "blue", vibrate: true, priority: 'high', title: 'Task Added', message: 'Task has been added', playSound: true })
+                this.props.navigation.navigate('TODO')
+              });
         }
         catch (error) {
           console.error(error)
         }
-      }
+      // }
     }
     render() {
       return (

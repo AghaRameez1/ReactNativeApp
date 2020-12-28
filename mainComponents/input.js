@@ -3,13 +3,13 @@ import { View, TextInput, Text } from 'react-native';
 import { Icon } from 'react-native-elements'
 
 const Input = props => {
-    const [icon, setIcon] = useState("md-eye-off")
+    const [icon, setIcon] = useState("md-eye")
     const [hidePassword, setHidePassword] = useState(false)
 
     _changeIcon = (iconid,id) => {
-        icon !== "md-eye-off"
-            ? (setIcon("md-eye-off"), setHidePassword(false))
-            : (setIcon("md-eye"), setHidePassword(true))
+        icon !== "md-eye"
+            ? (setIcon("md-eye"), setHidePassword(true))
+            : (setIcon("md-eye-off"), setHidePassword(false))
     }
     const icon2 = <Icon style={{
         elevation: 10,

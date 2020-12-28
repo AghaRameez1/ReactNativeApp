@@ -23,14 +23,14 @@ export default class HomeScreen extends React.Component {
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <Text>Welcome to Home Screen</Text>
           <View style={{flex:1,justifyContent:'space-evenly'}}>
-          {/* <Button
+          <Button
             title="Go to Login"
             onPress={() => this.props.navigation.navigate('Task')}
           />
           <Button
             title="Go to Sign Up"
             onPress={() => this.props.navigation.navigate('Register')}
-          /> */}
+          />
           <Button
             title="Go to Calculator Screen"
             onPress={() => this.props.navigation.navigate('Calculator')}
@@ -39,7 +39,7 @@ export default class HomeScreen extends React.Component {
             title="Go to Game Screen"
             onPress={() => this.props.navigation.navigate('Game')}
           />
-          {/* <Button
+          <Button
             title="Go to Maps"
             onPress={() => this.props.navigation.navigate('GoogleMap')}
           />
@@ -50,7 +50,7 @@ export default class HomeScreen extends React.Component {
           <Button
             title="Go to Client Screen"
             onPress={() => this.props.navigation.navigate('Client')}
-          /> */}
+          />
           </View>
         </View>
       )

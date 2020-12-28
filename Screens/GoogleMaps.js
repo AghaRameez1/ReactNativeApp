@@ -1,10 +1,11 @@
 import React from 'react';
-import MapView from "react-native-map-clustering";
-import { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView from 'react-native-map-clustering';
+import {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import { Dimensions, StyleSheet, View, Button, Text } from 'react-native';
 import { PermissionsAndroid } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import PushNotification from 'react-native-push-notification';
+import firestore from '@react-native-firebase/firestore';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 let { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
@@ -25,10 +26,10 @@ export default class GoogleMaps extends React.Component {
       }
     };
   }
-  componentDidMount = async () => {
+  componentDidMount = async () => {   
     try {
       const response = await fetch('https://meanstacktodo1.herokuapp.com/list');
-      PushNotification.localNotification({ vibrate: true, priority: 'high', title: 'NETWORK available', message: 'The server is connected', playSound: true })
+      PushNotification.localNotification({ vibrate: true, priority: 'high', title: 'NETWORK available', message: 'The server is connected', playSound: false })
       const responseJson = await response.json();
       this.setState({
         markers: responseJson,
@@ -59,7 +60,8 @@ export default class GoogleMaps extends React.Component {
                 latitudeDelta: 50,
                 longitudeDelta: 50,
               }
-            })
+            });
+
           },
           (error) => {
             // See error code charts below.
